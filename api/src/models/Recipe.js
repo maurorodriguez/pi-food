@@ -12,13 +12,24 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
     summary: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
     healthScore: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: true,
+        min: 1,
+        max: 100,
+      }
     },
     instructions: {
       type: DataTypes.ARRAY(DataTypes.STRING)

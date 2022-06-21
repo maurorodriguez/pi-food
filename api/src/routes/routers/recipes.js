@@ -1,17 +1,15 @@
 const { Router } = require('express');
+const getRecipeByName = require('../controllers/getRecipeByName')
+const postRecipe = require('../controllers/postRecipe');
 
 const router = Router()
 
-router.get('/', (req,res,next) => {
-    res.send('ruta /recipes')
-})
+router.get('/', getRecipeByName)
 
 router.get('/:id', (req,res,next) => {
     res.send(`ruta /recipes/${req.params.id}`)
 })
 
-router.post('/', (req, res, next) => {
-    res.send('ruta post de recipes')
-})
+router.post('/', postRecipe);
 
 module.exports = router
