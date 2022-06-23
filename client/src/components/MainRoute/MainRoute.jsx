@@ -1,8 +1,13 @@
 import React from 'react'
+import NavBar from '../NavBar/NavBar'
+import Recipes from '../RecipeCard/RecipeCard'
 
 function MainRoute() {
   return (
-    <div>MainRoute</div>
+    <div>
+      <NavBar/>
+      <Recipes/>
+    </div>
   )
 }
 
