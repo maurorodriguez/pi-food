@@ -1,14 +1,17 @@
-import React from 'react'
-import NavBar from '../NavBar/NavBar'
-import Recipes from '../RecipeCard/RecipeCard'
+import React from 'react';
+import NavBar from '../NavBar/NavBar';
+import Recipes from '../Recipes/Recipes';
+import styles from './MainRoute.module.css';
 
 function MainRoute() {
   return (
-    <div>
-      <NavBar/>
-      <Recipes/>
+    <div id={styles.container}>
+      <NavBar />
+      <div id={styles.recipes}>
+        <Recipes />
+      </div>
     </div>
-  )
+  );
 }
 
-export default MainRoute
+export default MainRoute;

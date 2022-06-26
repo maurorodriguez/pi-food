@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function DetailRecipe() {
   return (
-    <div>DetailRecipe</div>
-  )
+    <div>
+      <div>detailRecipe</div>
+    </div>
+  );
 }
 
-export default DetailRecipe
+export default DetailRecipe;

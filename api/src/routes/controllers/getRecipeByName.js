@@ -7,18 +7,17 @@ const {Op} = require('sequelize');
 const getRecipeByName = async(req,res,next) => {
     try {
         const {name} = req.query;
-        const rawData = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=2&apiKey=${API_KEY}`)
+        const rawData = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=10&query=${name}&apiKey=${API_KEY}`)
+
         const apiSearch = rawData.data.results.map(recipe => {
-            if(recipe.title.toLowerCase().match(name)){
-                return {
-                    id: recipe.id,
-                    name: recipe.title,
-                    image: recipe.image,
-                    diets: recipe.diets,
-                }
+            return {
+                id: recipe.id,
+                name: recipe.title,
+                image: recipe.image,
+                diets: recipe.diets,
+                steps: recipe.analyzedInstructions[0].steps.length,
             }
         })
-        console.log(apiSearch)
 
         const recipesFromDb = await Recipe.findAll({
             where: {

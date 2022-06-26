@@ -1,1 +1,3 @@
 export const GET_RECIPES = 'GET_RECIPES';
+export const IS_LOADING = 'IS_LOADING';
+export const SET_RECIPES_TO_RENDER = 'SET_RECIPES_TO_RENDER';
