@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   isLoading: undefined,
-  recipes: [],
+  recipes: undefined,
   filteredRecipes: {},
   recipesToRender: [],
   diets: {},

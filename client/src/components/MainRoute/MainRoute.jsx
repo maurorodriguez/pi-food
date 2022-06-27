@@ -6,7 +6,9 @@ import styles from './MainRoute.module.css';
 function MainRoute() {
   return (
     <div id={styles.container}>
-      <NavBar />
+      <div id={styles.navbar}>
+        <NavBar />
+      </div>
       <div id={styles.recipes}>
         <Recipes />
       </div>
