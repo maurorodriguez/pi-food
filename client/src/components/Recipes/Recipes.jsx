@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Recipes.module.css';
-import { getRecipes } from '../../redux/actions/actions';
+import { getRecipes, setLoading } from '../../redux/actions/actions';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
+import FilterRecipes from '../FilterRecipes/FilterRecipes';
 
 function Recipes() {
   const dispatch = useDispatch();
-  const { recipes, recipesToRender } = useSelector((state) => state);
+  const { recipes, recipesToRender, isLoading } = useSelector((state) => state);
   const [currentPage, setCurrentPage] = useState(1);
   const maxPerPage = 9;
   const maxPages = Math.ceil(recipesToRender.length / maxPerPage);
@@ -18,8 +19,10 @@ function Recipes() {
 
   useEffect(() => {
     if (!recipes) {
+      dispatch(setLoading(true));
       dispatch(getRecipes());
     }
+    setCurrentPage(1);
   }, [dispatch, recipes, recipesToRender]);
 
   return (
@@ -29,8 +32,11 @@ function Recipes() {
         setCurrentPage={setCurrentPage}
         maxPages={maxPages}
       />
+      <div id={styles.filters}>
+        <FilterRecipes />
+      </div>
       <div id={styles.recipesContainer}>
-        {!recipes ? (
+        {isLoading ? (
           <Loader />
         ) : (
           recipesToRender

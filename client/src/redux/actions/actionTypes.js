@@ -1,3 +1,6 @@
 export const GET_RECIPES = 'GET_RECIPES';
 export const IS_LOADING = 'IS_LOADING';
 export const SET_RECIPES_TO_RENDER = 'SET_RECIPES_TO_RENDER';
+export const GET_DIETS = 'GET_DIETS';
+export const FILTER_BY_DIETS = 'FILTER_BY_DIETS';
+export const RESET_RECIPES_TO_RENDER = 'RESET_RECIPES_TO_RENDER';

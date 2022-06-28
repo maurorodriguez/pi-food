@@ -46,32 +46,34 @@ function Pagination({ currentPage, setCurrentPage, maxPages }) {
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    currentPage < 2 ? setPrevButton(true) : setPrevButton(false);
+    currentPage < 2 ? setPrevButton(false) : setPrevButton(true);
     // eslint-disable-next-line no-unused-expressions
-    currentPage >= maxPages ? setNextButton(true) : setNextButton(false);
+    currentPage >= maxPages ? setNextButton(false) : setNextButton(true);
   }, [currentPage, maxPages]);
 
   return (
     <div>
-      <button
-        className={styles.paginationButton}
-        disabled={prevButton}
-        onClick={() => {
-          setPage(currentPage - 1);
-        }}
-      >
-        &lt;
-      </button>
+      {prevButton && (
+        <button
+          className={styles.paginationButton}
+          onClick={() => {
+            setPage(currentPage - 1);
+          }}
+        >
+          &lt;
+        </button>
+      )}
       {buttons}
-      <button
-        className={styles.paginationButton}
-        disabled={nextButton}
-        onClick={() => {
-          setPage(currentPage + 1);
-        }}
-      >
-        &gt;
-      </button>
+      {nextButton && (
+        <button
+          className={styles.paginationButton}
+          onClick={() => {
+            setPage(currentPage + 1);
+          }}
+        >
+          &gt;
+        </button>
+      )}
     </div>
   );
 }
