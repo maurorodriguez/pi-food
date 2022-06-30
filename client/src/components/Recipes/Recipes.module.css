@@ -13,6 +13,13 @@
   align-items: center;
 }
 
+#recipesToRender {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px 0 0 0;
+}
+
 @media (max-width: 390px) {
   #filtersOrderBy {
     flex-direction: column;

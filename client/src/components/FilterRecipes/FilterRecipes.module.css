@@ -25,6 +25,7 @@
   font-size: 20px;
   text-transform: capitalize;
   color: #7f7f7f;
+  cursor: pointer;
 }
 
 #filterDiets select:focus {

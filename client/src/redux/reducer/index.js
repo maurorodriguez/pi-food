@@ -13,7 +13,7 @@ import {
 const initialState = {
   isLoading: undefined,
   recipes: undefined,
-  filteredRecipes: {},
+  filteredRecipes: undefined,
   recipesToRender: [],
   diets: undefined,
   page: 1,
@@ -44,7 +44,7 @@ export default function reducer(state = initialState, { type, payload }) {
     case FILTER_BY_DIETS:
       return {
         ...state,
-        recipesToRender: state.recipes.filter((r) =>
+        filteredRecipes: state.recipesToRender.filter((r) =>
           r.diets.find((d) => (d.name || d) === payload)
         ),
       };
@@ -52,6 +52,7 @@ export default function reducer(state = initialState, { type, payload }) {
     case RESET_RECIPES_TO_RENDER:
       return {
         ...state,
+        filteredRecipes: undefined,
         recipesToRender: state.recipes,
       };
 
@@ -62,6 +63,14 @@ export default function reducer(state = initialState, { type, payload }) {
       };
 
     case SORT_BY_NAME:
+      if (state.filteredRecipes) {
+        return {
+          ...state,
+          filteredRecipes: state.filteredRecipes.sort((recipeA, recipeB) =>
+            recipeA.name > recipeB.name ? payload : payload * -1
+          ),
+        };
+      }
       return {
         ...state,
         recipesToRender: state.recipesToRender.sort((recipeA, recipeB) =>
@@ -70,6 +79,14 @@ export default function reducer(state = initialState, { type, payload }) {
       };
 
     case SORT_BY_HEALTHSCORE:
+      if (state.filteredRecipes) {
+        return {
+          ...state,
+          filteredRecipes: state.filteredRecipes.sort((recipeA, recipeB) =>
+            recipeA.healthScore > recipeB.healthScore ? payload * -1 : payload
+          ),
+        };
+      }
       return {
         ...state,
         recipesToRender: state.recipesToRender.sort((recipeA, recipeB) =>

@@ -10,13 +10,21 @@ import SortBy from '../SortBy/SortBy';
 
 function Recipes() {
   const dispatch = useDispatch();
-  const { recipes, recipesToRender, isLoading } = useSelector((state) => state);
+  const { recipes, recipesToRender, isLoading, filteredRecipes } = useSelector(
+    (state) => state
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const maxPerPage = 9;
-  const maxPages = Math.ceil(recipesToRender.length / maxPerPage);
+  const maxPages = Math.ceil(
+    (filteredRecipes ? filteredRecipes.length : recipesToRender.length) /
+      maxPerPage
+  );
 
   const defaultImage =
     'https://us.123rf.com/450wm/gioiak2/gioiak21708/gioiak2170800312/84667691-signo-de-interrogaci%C3%B3n-rojo-en-un-plato-sobre-fondo-negro-ilustraci%C3%B3n-3d.jpg';
+
+  const handleRender = (allRecipes) =>
+    allRecipes.slice(maxPerPage * (currentPage - 1), maxPerPage * currentPage);
 
   useEffect(() => {
     if (!recipes) {
@@ -28,7 +36,7 @@ function Recipes() {
 
   return (
     <div id={styles.container}>
-      {!isLoading && (
+      {/* {!isLoading && (
         <>
           <Pagination
             currentPage={currentPage}
@@ -64,7 +72,40 @@ function Recipes() {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         maxPages={maxPages}
-      />
+      /> */}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            maxPages={maxPages}
+          />
+          <div id={styles.filtersOrderBy}>
+            <FilterRecipes setCurrentPage={setCurrentPage} />
+            <SortBy setCurrentPage={setCurrentPage} />
+          </div>
+          <div id={styles.recipesToRender}>
+            {handleRender(filteredRecipes || recipesToRender).map((r) => (
+              <RecipeCard
+                key={r.id}
+                id={r.id}
+                name={r.name}
+                image={r.image || defaultImage}
+                diets={r.diets}
+                healthScore={r.healthScore}
+                steps={r.instructions ? r.instructions.length : r.steps}
+              />
+            ))}
+          </div>
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            maxPages={maxPages}
+          />
+        </>
+      )}
     </div>
   );
 }

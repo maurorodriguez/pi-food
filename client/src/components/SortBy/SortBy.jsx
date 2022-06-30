@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -15,7 +16,9 @@ function SortBy({ setCurrentPage }) {
     setCurrentPage(1);
   };
 
-  const handleOption = (value) => {
+  const handleOption = (target) => {
+    const { value } = target;
+    target.value = '';
     setPage(1);
 
     switch (value) {
@@ -38,12 +41,12 @@ function SortBy({ setCurrentPage }) {
 
   return (
     <div id={styles.sortByContainer}>
-      <h2 id={styles.sortByText}>sort by:</h2>
+      <h2 id={styles.sortByText}>Sort by:</h2>
       <div id={styles.sortDiets}>
         <select
           name="sortByDiets"
           id="sortByDiets"
-          onChange={(e) => handleOption(e.target.value)}
+          onChange={(e) => handleOption(e.target)}
         >
           <option value="" />
           <option value="reset">Reset Filters</option>

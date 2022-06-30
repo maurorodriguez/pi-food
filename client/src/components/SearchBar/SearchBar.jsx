@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import {
   searchRecipes,
   resetRecipesToRender,
+  setLoading,
 } from '../../redux/actions/actions';
 import styles from './SearchBar.module.css';
 
@@ -20,6 +21,7 @@ function Search() {
     setResetBtnDisabled(false);
     const value = document.querySelector(`#${styles.search}`)?.value.trim();
 
+    dispatch(setLoading(true));
     dispatch(searchRecipes(value));
   };
 
