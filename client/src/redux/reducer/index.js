@@ -6,6 +6,8 @@ import {
   GET_DIETS,
   FILTER_BY_DIETS,
   RESET_RECIPES_TO_RENDER,
+  SORT_BY_NAME,
+  SORT_BY_HEALTHSCORE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -57,6 +59,22 @@ export default function reducer(state = initialState, { type, payload }) {
       return {
         ...state,
         isLoading: payload,
+      };
+
+    case SORT_BY_NAME:
+      return {
+        ...state,
+        recipesToRender: state.recipesToRender.sort((recipeA, recipeB) =>
+          recipeA.name > recipeB.name ? payload : payload * -1
+        ),
+      };
+
+    case SORT_BY_HEALTHSCORE:
+      return {
+        ...state,
+        recipesToRender: state.recipesToRender.sort((recipeA, recipeB) =>
+          recipeA.healthScore > recipeB.healthScore ? payload * -1 : payload
+        ),
       };
 
     default:

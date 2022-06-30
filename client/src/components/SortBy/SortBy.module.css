@@ -1,19 +1,18 @@
-#filterContainer {
+#sortByContainer {
   border-radius: 10px;
   background: #e0e0e0;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
   text-align: left;
-  margin: 0 20px 0 0;
 }
 
-#filterText {
+#sortByText {
   font-size: 15px;
   color: #7f7f7f;
   text-align: left;
   margin: 10px 0 0 20px;
 }
 
-#filterDiets select {
+#sortDiets select {
   width: 150px;
   border-radius: 10px;
   background: #e0e0e0;
@@ -27,17 +26,12 @@
   color: #7f7f7f;
 }
 
-#filterDiets select:focus {
+#sortDiets select:focus {
   outline: none;
 }
 
-#filterDiets option {
+#sortDiets option {
   height: 200px;
   color: #7f7f7f;
-}
-
-@media (max-width: 390px) {
-  #filterContainer {
-    margin: 0 0 15px 0;
-  }
+  margin: 20px;
 }

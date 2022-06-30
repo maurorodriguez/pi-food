@@ -8,6 +8,9 @@ function Pagination({ currentPage, setCurrentPage, maxPages }) {
   const setPage = (page) => {
     setCurrentPage(page);
   };
+  const [prevButton, setPrevButton] = useState(false);
+  const [nextButton, setNextButton] = useState(false);
+  const buttons = [];
 
   function scrollTop() {
     if (
@@ -19,14 +22,10 @@ function Pagination({ currentPage, setCurrentPage, maxPages }) {
     }
   }
 
-  const [prevButton, setPrevButton] = useState(false);
-  const [nextButton, setNextButton] = useState(false);
-
   let firstButton = currentPage > 3 ? currentPage - 2 : 1;
   if (currentPage + 1 >= maxPages) firstButton = maxPages - 4;
   if (firstButton < 1) firstButton = 1;
 
-  const buttons = [];
   for (let i = firstButton; i <= maxPages && buttons.length < 5; i += 1) {
     buttons.push(
       <button

@@ -1,21 +1,30 @@
-import React from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchRecipes } from '../../redux/actions/actions';
+import {
+  searchRecipes,
+  resetRecipesToRender,
+} from '../../redux/actions/actions';
 import styles from './SearchBar.module.css';
 
 function Search() {
   const dispatch = useDispatch();
+  const [resetBtnDisabled, setResetBtnDisabled] = useState(true);
+  const resetSearch = () => {
+    document.querySelector(`#${styles.search}`).value = '';
+    dispatch(resetRecipesToRender());
+  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
-    const value = document.querySelector(`#${styles.search}`)?.value;
+    setResetBtnDisabled(false);
+    const value = document.querySelector(`#${styles.search}`)?.value.trim();
 
     dispatch(searchRecipes(value));
   };
 
   return (
-    <form id={styles.form} onSubmit={handleOnSubmit}>
+    <form id={styles.form} onSubmit={(e) => handleOnSubmit(e)}>
       <input
         id={styles.search}
         autoComplete="off"
@@ -23,6 +32,17 @@ function Search() {
         name="searchRecipe"
         placeholder="Search Recipe"
       />
+      <button
+        type="reset"
+        disabled={resetBtnDisabled}
+        id={styles.deleteSearch}
+        onClick={() => {
+          resetSearch();
+          setResetBtnDisabled(true);
+        }}
+      >
+        <span>+</span>
+      </button>
     </form>
   );
 }

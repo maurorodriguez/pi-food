@@ -1,3 +1,8 @@
+#form {
+  width: 50%;
+  position: relative;
+}
+
 #search {
   width: 100%;
   height: 40px;
@@ -5,7 +10,6 @@
   border: none;
   text-align: center;
   font-size: 1.3em;
-  /* margin-right: 2vw; */
   border-radius: 50px;
   background: #e0e0e0;
   /* box-shadow: inset 12px 12px 24px #bebebe, inset -12px -12px 24px #ffffff; */
@@ -20,7 +24,33 @@
   outline: none;
 }
 
-#form {
-  width: 50%;
-  /* margin-right: 20px; */
+#deleteSearch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  border: none;
+  background: #e0e0e0;
+  box-shadow: 8px 8px 15px #bebebe, -1px -1px 15px #ffffff;
+  display: block;
+}
+
+#deleteSearch:disabled {
+  display: none;
+}
+
+#deleteSearch span {
+  display: block;
+  font-weight: 600;
+  transform: rotate(45deg);
+  font-size: 30px;
+  color: #5e5e5e;
+}
+
+@media (max-width: 390px) {
+  #search {
+    font-size: 15px;
+  }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,12 +11,14 @@ import styles from './FilterRecipes.module.css';
 function FilterRecipes() {
   const dispatch = useDispatch();
   const { diets } = useSelector((state) => state);
-  const handleDietsFilter = (value) => {
-    if (value !== '' && value !== 'none') {
+  const handleDietsFilter = (target) => {
+    const { value } = target;
+    if (value !== '' && value !== 'reset') {
+      target.value = '';
       return dispatch(filterByDiets(value));
     }
 
-    return value === 'none' ? dispatch(resetRecipesToRender()) : null;
+    return value === 'reset' ? dispatch(resetRecipesToRender()) : null;
   };
 
   useEffect(() => {
@@ -29,14 +32,14 @@ function FilterRecipes() {
       <h2 id={styles.filterText}>Filter by diets</h2>
       <div id={styles.filterDiets}>
         <select
-          name="diets"
-          id="diets"
+          name="filterDiets"
+          id="filterDiets"
           onChange={(e) => {
-            handleDietsFilter(e.target.value);
+            handleDietsFilter(e.target);
           }}
         >
           <option value="" />
-          <option value="none">None</option>
+          <option value="reset">Reset Filters</option>
           {diets &&
             diets.map((d) => (
               <option key={d.name} value={d.name}>

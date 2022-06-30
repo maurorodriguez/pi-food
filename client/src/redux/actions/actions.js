@@ -6,6 +6,8 @@ import {
   GET_DIETS,
   FILTER_BY_DIETS,
   RESET_RECIPES_TO_RENDER,
+  SORT_BY_NAME,
+  SORT_BY_HEALTHSCORE,
 } from './actionTypes';
 
 export function getRecipes() {
@@ -47,6 +49,18 @@ export function filterByDiets(value) {
 export function resetRecipesToRender() {
   return (dispatch) => {
     dispatch({ type: RESET_RECIPES_TO_RENDER, payload: null });
+  };
+}
+
+export function sortByName(sort) {
+  return (dispatch) => {
+    dispatch({ type: SORT_BY_NAME, payload: sort });
+  };
+}
+
+export function sortByHealthScore(sort) {
+  return (dispatch) => {
+    dispatch({ type: SORT_BY_HEALTHSCORE, payload: sort });
   };
 }
 

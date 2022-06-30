@@ -6,6 +6,7 @@ import RecipeCard from '../RecipeCard/RecipeCard';
 import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
 import FilterRecipes from '../FilterRecipes/FilterRecipes';
+import SortBy from '../SortBy/SortBy';
 
 function Recipes() {
   const dispatch = useDispatch();
@@ -27,14 +28,19 @@ function Recipes() {
 
   return (
     <div id={styles.container}>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        maxPages={maxPages}
-      />
-      <div id={styles.filters}>
-        <FilterRecipes />
-      </div>
+      {!isLoading && (
+        <>
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            maxPages={maxPages}
+          />
+          <div id={styles.filtersOrderBy}>
+            <FilterRecipes setCurrentPage={setCurrentPage} />
+            <SortBy setCurrentPage={setCurrentPage} />
+          </div>
+        </>
+      )}
       <div id={styles.recipesContainer}>
         {isLoading ? (
           <Loader />
