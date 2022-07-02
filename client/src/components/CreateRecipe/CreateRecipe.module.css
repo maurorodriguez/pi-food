@@ -142,9 +142,28 @@
   margin: 5px 0 0 0;
 }
 
-#dietsList div {
+.listItem {
   border-radius: 20px;
   box-shadow: 4px 4px 10px #bebebe, -3px -3px 10px #ffffff;
   padding: 5px 10px;
   margin: 0 7px 20px 0;
+}
+
+#dietsList button {
+  padding: 0;
+  border: none;
+  background: #e0e0e0;
+  box-shadow: 2px 2px 12px #bebebe, -2px -2px 12px #ffffff;
+  cursor: pointer;
+  margin: 0 0 0 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+
+#dietsList button div {
+  transform: rotate(45deg);
+  color: #7f7f7f;
+  font-weight: 600;
+  font-size: 20px;
 }

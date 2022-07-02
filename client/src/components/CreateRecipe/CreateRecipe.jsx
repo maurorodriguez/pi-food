@@ -107,6 +107,12 @@ function CreateRecipe() {
     }
   };
 
+  const handleRemoveDiets = (e, diet) => {
+    e.preventDefault();
+
+    setDietsForm(dietsForm.filter((d) => d !== diet));
+  };
+
   return (
     <div id={styles.createRecipe}>
       <h1 id={styles.title}>Create a Recipe</h1>
@@ -187,7 +193,12 @@ function CreateRecipe() {
           <small>At least 1 type of diet</small>
           <div id={styles.dietsList}>
             {dietsForm?.map((d) => (
-              <div key={d}>{d}</div>
+              <div key={d} className={styles.listItem}>
+                {d}
+                <button type="button" onClick={(e) => handleRemoveDiets(e, d)}>
+                  <div>+</div>
+                </button>
+              </div>
             ))}
           </div>
         </label>
