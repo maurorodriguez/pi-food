@@ -8,6 +8,7 @@ import {
   RESET_RECIPES_TO_RENDER,
   SORT_BY_NAME,
   SORT_BY_HEALTHSCORE,
+  CREATE_RECIPE,
 } from './actionTypes';
 
 export function getRecipes() {
@@ -67,5 +68,22 @@ export function sortByHealthScore(sort) {
 export function setLoading(value) {
   return (dispatch) => {
     dispatch({ type: IS_LOADING, payload: value });
+  };
+}
+
+export function createRecipe(recipe) {
+  return async (dispatch) => {
+    const { name, summary, healthScore, instructions, diets } = recipe;
+    const createdRecipe = await axios.post(
+      'http://192.168.1.110:3001/recipes',
+      {
+        name,
+        summary,
+        healthScore: healthScore.length ? healthScore : null,
+        instructions: instructions.length ? instructions : null,
+        diets: diets.length ? diets : null,
+      }
+    );
+    dispatch({ type: CREATE_RECIPE, payload: createdRecipe });
   };
 }

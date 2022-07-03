@@ -10,13 +10,9 @@
 
 #recipeForm {
   margin: 0 100px 0 100px;
-  background: #e0e0e0;
-  box-shadow: 10px 10px 25px #bebebe, -10px -10px 25px #ffffff;
   display: flex;
   flex-direction: column;
   padding: 30px 0;
-  /* justify-content: center;
-  align-content: center; */
   align-items: center;
   border-radius: 20px;
 }
@@ -57,7 +53,8 @@
 }
 
 #recipeForm input,
-#recipeForm textarea {
+#recipeForm textarea,
+#recipeForm select {
   border-radius: 20px;
   border: none;
   background: #e0e0e0;
@@ -65,20 +62,12 @@
   box-shadow: inset 3px 3px 5px #bebebe, inset -2px -2px 5px #ffffff;
   /* box-shadow: inset 3px 3px 5px #864d4d, inset -2px -2px 5px #ffd4d4; */
   border: 2px solid #e0e0e0;
-  width: 80%;
+  width: 250px;
   outline: none;
   padding: 2px 15px 2px 15px;
   margin: 0 0 5px 0;
   font-size: 20px;
   resize: none;
-}
-
-#recipeForm input #ok {
-  border: 2px solid #49ca45;
-}
-
-#recipeForm input #wrong {
-  border: 2px solid #fd8585;
 }
 
 #recipeForm input[type='number']::-webkit-inner-spin-button,
@@ -88,19 +77,23 @@
 }
 
 #recipeForm select {
+  width: 284px;
+}
+/* 
+#recipeForm select {
   width: 80%;
   border-radius: 10px;
   background: #e0e0e0;
   box-shadow: inset 3px 3px 5px #bebebe, inset -2px -2px 5px #ffffff;
   border: none;
   height: 30px;
-  /* margin: 5px 10px 10px 10px; */
+  margin: 5px 10px 10px 10px;
   padding: 0 0 0 15px;
   font-size: 20px;
   text-transform: capitalize;
   color: #7f7f7f;
   cursor: pointer;
-}
+} */
 
 #recipeForm select:focus {
   outline: none;
@@ -166,4 +159,12 @@
   color: #7f7f7f;
   font-weight: 600;
   font-size: 20px;
+}
+
+.statusOk {
+  color: #49ca45;
+}
+
+.statusWrong {
+  color: #fd8585;
 }

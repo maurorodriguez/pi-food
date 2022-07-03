@@ -20,6 +20,7 @@
   },
   "plugins": ["react", "react-hooks", "import", "prettier"],
   "rules": {
+    "allowTernary": true,
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }

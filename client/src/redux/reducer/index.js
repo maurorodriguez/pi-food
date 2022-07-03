@@ -8,6 +8,7 @@ import {
   RESET_RECIPES_TO_RENDER,
   SORT_BY_NAME,
   SORT_BY_HEALTHSCORE,
+  CREATE_RECIPE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -92,6 +93,12 @@ export default function reducer(state = initialState, { type, payload }) {
         recipesToRender: state.recipesToRender.sort((recipeA, recipeB) =>
           recipeA.healthScore > recipeB.healthScore ? payload * -1 : payload
         ),
+      };
+
+    case CREATE_RECIPE:
+      return {
+        ...state,
+        createdRecipe: payload,
       };
 
     default:
