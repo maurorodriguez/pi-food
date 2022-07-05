@@ -4,6 +4,8 @@ import {
   IS_LOADING,
   SET_RECIPES_TO_RENDER,
   GET_DIETS,
+  GET_RECIPE_BY_ID,
+  CLEAR_RECIPE_DETAIL,
   FILTER_BY_DIETS,
   RESET_RECIPES_TO_RENDER,
   SORT_BY_NAME,
@@ -14,6 +16,7 @@ import {
 const initialState = {
   isLoading: undefined,
   recipes: undefined,
+  recipeDetail: undefined,
   filteredRecipes: undefined,
   recipesToRender: [],
   diets: undefined,
@@ -40,6 +43,18 @@ export default function reducer(state = initialState, { type, payload }) {
       return {
         ...state,
         diets: payload,
+      };
+
+    case GET_RECIPE_BY_ID:
+      return {
+        ...state,
+        recipeDetail: payload,
+      };
+
+    case CLEAR_RECIPE_DETAIL:
+      return {
+        ...state,
+        recipeDetail: undefined,
       };
 
     case FILTER_BY_DIETS:

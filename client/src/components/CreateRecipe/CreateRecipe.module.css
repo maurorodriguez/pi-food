@@ -4,15 +4,21 @@
   padding: 20px 0 0 0;
 }
 
+#formAndRecipe {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px 0;
+}
+
 #title {
   margin: 0 0 40px 0;
 }
 
 #recipeForm {
-  margin: 0 100px 0 100px;
+  margin: 0 100px 0 0;
   display: flex;
   flex-direction: column;
-  padding: 30px 0;
+  padding: 0;
   align-items: center;
   border-radius: 20px;
 }
@@ -23,7 +29,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: fit-content; */
   width: 300px;
   text-align: left;
   border-radius: 10px;
@@ -58,9 +63,7 @@
   border-radius: 20px;
   border: none;
   background: #e0e0e0;
-  /* background: #ff8484; */
   box-shadow: inset 3px 3px 5px #bebebe, inset -2px -2px 5px #ffffff;
-  /* box-shadow: inset 3px 3px 5px #864d4d, inset -2px -2px 5px #ffd4d4; */
   border: 2px solid #e0e0e0;
   width: 250px;
   outline: none;
@@ -79,21 +82,6 @@
 #recipeForm select {
   width: 284px;
 }
-/* 
-#recipeForm select {
-  width: 80%;
-  border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: inset 3px 3px 5px #bebebe, inset -2px -2px 5px #ffffff;
-  border: none;
-  height: 30px;
-  margin: 5px 10px 10px 10px;
-  padding: 0 0 0 15px;
-  font-size: 20px;
-  text-transform: capitalize;
-  color: #7f7f7f;
-  cursor: pointer;
-} */
 
 #recipeForm select:focus {
   outline: none;
@@ -167,4 +155,40 @@
 
 .statusWrong {
   color: #fd8585;
+}
+
+#recipeCard {
+  max-width: 400px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+  padding: 0 0px;
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  #formAndRecipe {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #recipeForm {
+    margin: 0;
+  }
+}
+
+#submitBtn {
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  background: #e0e0e0;
+  box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
+  color: #5e5e5e;
+  cursor: pointer;
+}
+
+#submitBtn:disabled {
+  color: #a8a8a8;
+  background: #e0e0e0;
+  box-shadow: inset 5px 5px 10px #cccccc, inset -5px -5px 10px #f4f4f4;
+  cursor: initial;
 }

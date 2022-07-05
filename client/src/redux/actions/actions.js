@@ -4,6 +4,8 @@ import {
   SET_RECIPES_TO_RENDER,
   IS_LOADING,
   GET_DIETS,
+  GET_RECIPE_BY_ID,
+  CLEAR_RECIPE_DETAIL,
   FILTER_BY_DIETS,
   RESET_RECIPES_TO_RENDER,
   SORT_BY_NAME,
@@ -38,6 +40,19 @@ export function getDiets() {
   return async (dispatch) => {
     const diets = await axios.get('http://192.168.1.110:3001/diets');
     dispatch({ type: GET_DIETS, payload: diets.data });
+  };
+}
+
+export function getRecipeById(id) {
+  return async (dispatch) => {
+    const recipe = await axios.get(`http://192.168.1.110:3001/recipes/${id}`);
+    dispatch({ type: GET_RECIPE_BY_ID, payload: recipe.data });
+  };
+}
+
+export function clearRecipeDetail() {
+  return (dispatch) => {
+    dispatch({ type: CLEAR_RECIPE_DETAIL, payload: null });
   };
 }
 

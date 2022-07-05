@@ -1,0 +1,19 @@
+#detailRecipe {
+  background: #e0e0e0;
+  min-height: 100vh;
+}
+
+#navbar {
+  margin: 0 0 30px 0;
+  padding: 30px 0 30px 0;
+  width: 100%;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+}
+
+#detailRecipeCard {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+}

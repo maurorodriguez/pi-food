@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './RecipeCard.module.css';
-import heartUrl from '../../images/heart2.svg';
 
 function RecipeCard({ id, name, diets, image, healthScore, steps }) {
   return (
@@ -21,7 +20,9 @@ function RecipeCard({ id, name, diets, image, healthScore, steps }) {
         </div>
         <div id={styles.info}>
           <div className={styles.healthScore}>
-            <img src={heartUrl} alt="" />
+            <span id={styles.heart} className={styles.red}>
+              &hearts;
+            </span>
             <h3>{healthScore || 'N/A'}</h3>
           </div>
           <h3>Steps: {steps || 'N/A'}</h3>

@@ -6,26 +6,38 @@ const { Recipe, Diet } = require('../../db');
 const getRecipeById = async (req, res, next) => {
   try {
     const idToSearch = req.params.id;
-    const recipe = [];
+    let recipe = {};
 
     if (isNaN(idToSearch)) {
-      recipe.push(await Recipe.findByPk(idToSearch, { include: Diet }));
+      recipe = await Recipe.findByPk(idToSearch, { include: Diet });
     } else {
       const rawData = await axios.get(
         `https://api.spoonacular.com/recipes/${idToSearch}/information?apiKey=${API_KEY}`
       );
-      const { id, title, image, diets, healthScore, analyzedInstructions } =
-        rawData.data;
-      recipe.push({
+
+      const {
+        id,
+        title,
+        image,
+        summary,
+        diets,
+        healthScore,
+        analyzedInstructions,
+      } = rawData.data;
+
+      recipe = {
         id: id,
         name: title,
         image: image,
         diets: diets,
         healthScore: healthScore,
-        steps: analyzedInstructions[0].steps.map((step) => {
-          return step.step;
-        }),
-      });
+        summary: summary.replace(/(<([^>]+)>)/gi, ''),
+        instructions: analyzedInstructions[0]
+          ? analyzedInstructions[0].steps.map((step) => {
+              return step.step;
+            })
+          : undefined,
+      };
     }
     res.status(200).send(recipe);
   } catch (error) {
