@@ -23,7 +23,7 @@ export function getRecipes() {
 
 export function setRecipesToRender(value) {
   return (dispatch) => {
-    dispatch({ type: GET_RECIPES, payload: value });
+    dispatch({ type: SET_RECIPES_TO_RENDER, payload: value });
   };
 }
 
@@ -88,17 +88,27 @@ export function setLoading(value) {
 
 export function createRecipe(recipe) {
   return async (dispatch) => {
-    const { name, summary, healthScore, instructions, diets } = recipe;
-    const createdRecipe = await axios.post(
-      'http://192.168.1.110:3001/recipes',
-      {
-        name,
-        summary,
-        healthScore: healthScore.length ? healthScore : null,
-        instructions: instructions.length ? instructions : null,
-        diets: diets.length ? diets : null,
-      }
-    );
-    dispatch({ type: CREATE_RECIPE, payload: createdRecipe });
+    try {
+      const { name, summary, healthScore, instructions, diets } = recipe;
+      const createdRecipe = await axios.post(
+        'http://192.168.1.110:3001/recipes',
+        {
+          name,
+          summary,
+          healthScore: healthScore.length ? healthScore : null,
+          instructions: instructions.length ? instructions : null,
+          diets: diets.length ? diets : null,
+        }
+      );
+      dispatch({ type: CREATE_RECIPE, payload: createdRecipe });
+      return {
+        status: createdRecipe.status,
+      };
+    } catch (error) {
+      return {
+        status: 500,
+        error: error.response.data,
+      };
+    }
   };
 }
