@@ -77,3 +77,9 @@
 .red {
   color: rgb(255, 106, 106);
 }
+
+#dishTypes {
+  font-size: 1.17em;
+  font-weight: bold;
+  text-transform: capitalize;
+}

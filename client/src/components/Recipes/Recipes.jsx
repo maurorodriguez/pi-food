@@ -36,43 +36,6 @@ function Recipes() {
 
   return (
     <div id={styles.container}>
-      {/* {!isLoading && (
-        <>
-          <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            maxPages={maxPages}
-          />
-          <div id={styles.filtersOrderBy}>
-            <FilterRecipes setCurrentPage={setCurrentPage} />
-            <SortBy setCurrentPage={setCurrentPage} />
-          </div>
-        </>
-      )}
-      <div id={styles.recipesContainer}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          recipesToRender
-            .slice(maxPerPage * (currentPage - 1), maxPerPage * currentPage)
-            .map((r) => (
-              <RecipeCard
-                key={r.id}
-                id={r.id}
-                name={r.name}
-                image={r.image || defaultImage}
-                diets={r.diets}
-                healthScore={r.healthScore}
-                steps={r.instructions ? r.instructions.length : r.steps}
-              />
-            ))
-        )}
-      </div>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        maxPages={maxPages}
-      /> */}
       {isLoading ? (
         <Loader />
       ) : (
@@ -94,6 +57,7 @@ function Recipes() {
                 name={r.name}
                 image={r.image || defaultImage}
                 diets={r.diets}
+                dishTypes={r.dishTypes}
                 healthScore={r.healthScore}
                 steps={r.instructions ? r.instructions.length : r.steps}
               />

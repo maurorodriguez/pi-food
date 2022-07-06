@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './RecipeCard.module.css';
 
-function RecipeCard({ id, name, diets, image, healthScore, steps }) {
+function RecipeCard({ id, name, diets, image, dishTypes, healthScore, steps }) {
   return (
     <Link id={styles.link} to={`/recipe/detail/${id}`}>
       <div className={styles.recipeContainer}>
@@ -24,6 +24,14 @@ function RecipeCard({ id, name, diets, image, healthScore, steps }) {
               &hearts;
             </span>
             <h3>{healthScore || 'N/A'}</h3>
+          </div>
+          <div id={styles.dishTypes}>
+            {dishTypes &&
+              dishTypes.map((dishType, index) => (
+                <span key={dishType}>
+                  {dishType} {index !== dishTypes.length - 1 ? '- ' : ''}
+                </span>
+              ))}
           </div>
           <h3>Steps: {steps || 'N/A'}</h3>
         </div>
