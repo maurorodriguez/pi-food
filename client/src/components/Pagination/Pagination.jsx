@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -44,9 +45,7 @@ function Pagination({ currentPage, setCurrentPage, maxPages }) {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
     currentPage < 2 ? setPrevButton(false) : setPrevButton(true);
-    // eslint-disable-next-line no-unused-expressions
     currentPage >= maxPages ? setNextButton(false) : setNextButton(true);
   }, [currentPage, maxPages]);
 

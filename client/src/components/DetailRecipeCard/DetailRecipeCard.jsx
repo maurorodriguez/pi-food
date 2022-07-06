@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-// import heartUrl from '../../images/heart2.svg';
 import styles from './DetailRecipeCard.module.css';
 
 function DetailRecipeCard({ recipe }) {
