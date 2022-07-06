@@ -57,3 +57,8 @@
 #diets h3 {
   padding: 0 0 0 5px;
 }
+
+#dishTypes {
+  display: flex;
+  text-transform: capitalize;
+}
