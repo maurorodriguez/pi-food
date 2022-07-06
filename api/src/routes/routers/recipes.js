@@ -5,22 +5,17 @@ const postRecipe = require('../controllers/postRecipe');
 const getAllRecipes = require('../controllers/getAllRecipes');
 const getRecipeById = require('../controllers/getRecipeById');
 
-const router = Router()
+const router = Router();
 
-router.get('/', (req,res,next) => {
-    const {name} = req.query;
-    if(name) return getRecipeByName(req,res,next);
+router.get('/', (req, res, next) => {
+  const { name } = req.query;
+  if (name) return getRecipeByName(req, res, next);
 
-    return getAllRecipes(req, res, next);
-    res.send('aca no hay un name')
-})
+  return getAllRecipes(req, res, next);
+});
 
-router.get('/:id', getRecipeById)
-
-// router.get('/:id', (req,res,next) => {
-//     res.send(`ruta /recipes/${req.params.id}`);
-// })
+router.get('/:id', getRecipeById);
 
 router.post('/', postRecipe);
 
-module.exports = router
+module.exports = router;
