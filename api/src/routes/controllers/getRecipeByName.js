@@ -31,7 +31,7 @@ const getRecipeByName = async (req, res, next) => {
       include: Diet,
     });
 
-    res.send(recipesFromDb.concat(apiSearch));
+    res.status(200).send(recipesFromDb.concat(apiSearch));
   } catch (error) {
     next(error);
   }

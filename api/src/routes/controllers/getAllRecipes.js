@@ -1,6 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
-const { API_KEY } = process.env;
+const { API_KEY, API_KEY2, API_KEY3 } = process.env;
 const { Recipe, Diet } = require('../../db');
 
 const getAllRecipes = async (req, res, next) => {
@@ -15,6 +15,7 @@ const getAllRecipes = async (req, res, next) => {
         name: recipe.title,
         image: recipe.image,
         diets: recipe.diets,
+        dishTypes: recipe.dishTypes,
         healthScore: recipe.healthScore,
         steps: recipe.analyzedInstructions.length
           ? recipe.analyzedInstructions[0].steps.length
@@ -24,7 +25,7 @@ const getAllRecipes = async (req, res, next) => {
 
     const recipesFromDb = await Recipe.findAll({ include: Diet });
 
-    res.send(recipesFromDb.concat(apiSearch));
+    res.status(200).send(recipesFromDb.concat(apiSearch));
   } catch (error) {
     next(error);
   }

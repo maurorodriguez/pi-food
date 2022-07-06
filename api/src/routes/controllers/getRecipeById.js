@@ -21,6 +21,7 @@ const getRecipeById = async (req, res, next) => {
         image,
         summary,
         diets,
+        dishTypes,
         healthScore,
         analyzedInstructions,
       } = rawData.data;
@@ -29,6 +30,7 @@ const getRecipeById = async (req, res, next) => {
         id: id,
         name: title,
         image: image,
+        dishTypes: dishTypes,
         diets: diets,
         healthScore: healthScore,
         summary: summary.replace(/(<([^>]+)>)/gi, ''),
