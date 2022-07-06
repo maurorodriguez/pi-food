@@ -1,16 +1,19 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getDiets, createRecipe } from '../../redux/actions/actions';
 import DetailRecipeCard from '../DetailRecipeCard/DetailRecipeCard';
+import Navbar from '../NavBar/NavBar';
 import styles from './CreateRecipe.module.css';
 
 function CreateRecipe() {
   const dispatch = useDispatch();
   const { diets } = useSelector((state) => state);
   const [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
-
+  const [response, setResponse] = useState(undefined);
   const [form, setForm] = useState({
     name: '',
     summary: '',
@@ -27,10 +30,9 @@ function CreateRecipe() {
     diets: true,
   });
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
+  const handleOnSubmit = () => {
     if (!submitBtnDisabled) {
-      dispatch(createRecipe(form));
+      dispatch(createRecipe(form)).then((res) => setResponse(res));
     }
   };
 
@@ -221,8 +223,19 @@ function CreateRecipe() {
     return setError({ ...error, diets: false });
   };
 
+  const handleReload = () => {
+    window.location.reload();
+  };
+
+  const continueWithRecipe = () => {
+    setResponse(undefined);
+  };
+
   return (
     <div id={styles.createRecipe}>
+      <div id={styles.navbar}>
+        <Navbar />
+      </div>
       <h1 id={styles.title}>Create a Recipe</h1>
       <div id={styles.formAndRecipe}>
         <form id={styles.recipeForm} action="" onSubmit={handleOnSubmit}>
@@ -334,11 +347,42 @@ function CreateRecipe() {
       <button
         id={styles.submitBtn}
         type="submit"
-        onSubmit={handleOnSubmit}
+        onClick={handleOnSubmit}
         disabled={submitBtnDisabled}
       >
         CREATE RECIPE
       </button>
+      <div
+        id={styles.response}
+        className={response ? styles.show : styles.hide}
+      >
+        <div id={styles.responseInfo}>
+          <span>
+            {response?.status !== 201
+              ? `An error occurred while creating the recipe: ${response?.error}`
+              : 'Recipe have been successfully created'}
+          </span>
+          <div id={styles.responseBtns}>
+            <Link className={styles.responseBtn} to="/home">
+              Back to home
+            </Link>
+            <button
+              type="button"
+              className={styles.responseBtn}
+              onClick={handleReload}
+            >
+              Create a new recipe
+            </button>
+            <button
+              type="button"
+              className={styles.responseBtn}
+              onClick={continueWithRecipe}
+            >
+              Continue with this recipe
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
